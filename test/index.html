@@ -3,15 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <title>Audio Player</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
-    .audio-controls {
-      margin-top: 10px;
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 16px;
+      max-width: 900px;
+      margin: auto;
     }
-    button {
-      font-size: 14px;
-      padding: 6px 12px;
-      margin-right: 6px;
+
+    h2 {
+      margin-bottom: 12px;
+    }
+
+    .player-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+    }
+
+    audio {
+      flex: 1;
+      height: 44px; /* Taller control bar on mobile */
+    }
+
+    .skip-btn {
+      font-size: 16px;
+      padding: 10px 14px;
+      min-width: 60px;
+      border: none;
+      border-radius: 8px;
+      background: #2b2b2b;
+      color: #fff;
       cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .skip-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* Mobile tweaks */
+    @media (max-width: 600px) {
+      audio {
+        height: 52px;
+      }
+
+      .skip-btn {
+        font-size: 18px;
+        padding: 12px 16px;
+      }
     }
   </style>
 </head>
@@ -19,14 +62,15 @@
 
   <h2>Listen</h2>
 
-  <audio id="player" controls preload="metadata">
-    <source src="audio/mytrack.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
+  <div class="player-row">
+    <button class="skip-btn" onclick="skip(-10)">« 10s</button>
 
-  <div class="audio-controls">
-    <button onclick="skip(-10)">« 10s</button>
-    <button onclick="skip(10)">10s »</button>
+    <audio id="player" controls preload="metadata">
+      <source src="audio/mytrack.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+
+    <button class="skip-btn" onclick="skip(10)">10s »</button>
   </div>
 
   <script>
