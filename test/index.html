@@ -17,21 +17,27 @@
       margin-bottom: 12px;
     }
 
+    /* Keeps the whole control group compact on wide screens */
+    .player-wrapper {
+      max-width: 520px;
+    }
+
     .player-row {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       width: 100%;
     }
 
     audio {
       flex: 1;
-      height: 44px; /* Taller control bar on mobile */
+      height: 44px; /* fixed height for consistency */
     }
 
     .skip-btn {
-      font-size: 16px;
-      padding: 10px 14px;
+      height: 44px;           /* exactly same height as audio */
+      font-size: 15px;
+      padding: 0 14px;        /* horizontal padding only */
       min-width: 60px;
       border: none;
       border-radius: 8px;
@@ -39,21 +45,28 @@
       color: #fff;
       cursor: pointer;
       touch-action: manipulation;
+      white-space: nowrap;
     }
 
     .skip-btn:active {
       transform: scale(0.97);
     }
 
-    /* Mobile tweaks */
-    @media (max-width: 600px) {
-      audio {
-        height: 52px;
+    /* Gentle shrink on narrow screens (no growth, no jump) */
+    @media (max-width: 480px) {
+      .player-wrapper {
+        max-width: 100%;
+      }
+
+      audio,
+      .skip-btn {
+        height: 40px; /* slightly smaller, not bigger */
       }
 
       .skip-btn {
-        font-size: 18px;
-        padding: 12px 16px;
+        font-size: 14px;
+        padding: 0 12px;
+        min-width: 56px;
       }
     }
   </style>
@@ -62,15 +75,17 @@
 
   <h2>Listen</h2>
 
-  <div class="player-row">
-    <button class="skip-btn" onclick="skip(-10)">« 10s</button>
+  <div class="player-wrapper">
+    <div class="player-row">
+      <button class="skip-btn" onclick="skip(-10)">« 10s</button>
 
-    <audio id="player" controls preload="metadata">
-      <source src="audio/mytrack.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
+      <audio id="player" controls preload="metadata">
+        <source src="audio/mytrack.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
 
-    <button class="skip-btn" onclick="skip(10)">10s »</button>
+      <button class="skip-btn" onclick="skip(10)">10s »</button>
+    </div>
   </div>
 
   <script>
