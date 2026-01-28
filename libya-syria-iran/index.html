@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سناریوی فروپاشی</title>
+    <title>سناریوی فروپاشی لیبی</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
@@ -103,7 +103,75 @@
             border-top: 1px solid #eee;
             margin: 40px 0;
         }
+
+        /* Container for the floating image and its caption */
+        .article-float-image {
+            width: 400px;
+            max-width: 100%;
+            /* Define a fixed width for the thumbnail area */
+            margin-bottom: 5px;
+            /* Space below the image container */
+        }
+
+        /* 1. Positioning and Horizontal Spacing (Left Float / RTL Context) */
+        .article-float-image.left-float {
+            float: left;
+            /* Space between the container and the left edge of the article */
+            margin-left: 20px;
+            /* CRITICAL: Space between the image and the main wrapping text on the right */
+            margin-right: 30px;
+            /* Space between the floating block and text/elements below it */
+            margin-bottom: 15px;
+        }
+
+        /* 2. Image Styling */
+        .article-float-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            /* Essential: Treats image as a block to remove the default inline gap */
+            display: block;
+            /* Ensures no extra space pushes the caption down */
+            margin-bottom: 0;
+        }
+
+        /* 3. Caption Styling (The Vertical Space Fix) */
+        .float-caption {
+            font-size: 0.85em;
+            color: #666;
+            text-align: center;
+            /* CRITICAL FIX: Creates the vertical space between the image bottom and the caption top */
+            margin-top: 10px;
+            margin-bottom: 0;
+            /* Clear default paragraph margins */
+        }
+
+        .clear-float {
+            clear: both;
+        }
+
+        .article-float-image a {
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+
+            .article-float-image,
+            .article-float-image.left-float {
+                float: none;
+                width: 100%;
+                margin: 20px 0;
+            }
+        }
     </style>
+
+
+    <!-- Twitter / X preview -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="عاملیتِ مردم ایران را محو نکنید" />
+    <meta name="twitter:description" content="" />
+    <meta name="twitter:image" content="atlantic-gem.png" />
+
 </head>
 
 <body>
